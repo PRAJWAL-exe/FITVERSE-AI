@@ -13,34 +13,13 @@
     <link rel="stylesheet" href="css/style.css">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            background: radial-gradient(circle at top right, #1e1b4b, #000);
-            overflow: hidden;
-            /* Dashboard scroll handled internally */
-            height: 100vh;
-        }
-
-        .admin-layout {
-            display: flex;
-            height: 100vh;
-        }
-
-        .main-viewport {
-            flex: 1;
-            overflow-y: auto;
-            padding: 40px;
-            scroll-behavior: smooth;
-        }
-    </style>
 </head>
 
 <body>
 
-    <div class="admin-layout">
+    <div class="admin-layout" id="adminLayout">
         <!-- Sidebar Navigation -->
-        <aside class="admin-sidebar"
-            style="height: 100vh; position: relative; border-right: 1px solid rgba(253, 185, 21, 0.1);">
+        <aside class="admin-sidebar" id="adminSidebar">
             <div class="sidebar-logo">FITVERSE<span>.AI</span></div>
             <ul class="sidebar-menu">
                 <li class="sidebar-item">
@@ -71,7 +50,7 @@
                     <span class="sidebar-icon">📥</span> <span>Export Report</span>
                 </button>
                 <button id="clear-data-btn" class="sidebar-link"
-                    style="background: none; border: none; width: 100%; cursor: pointer; color: #ff4d4d;">
+                    style="background: none; border: none; width: 100%; cursor: pointer; color: var(--secondary);">
                     <span class="sidebar-icon">🗑️</span> <span>Wipe Data</span>
                 </button>
                 <a href="index.html" class="sidebar-link" style="margin-top: 10px; opacity: 0.7;">
@@ -83,89 +62,89 @@
         <!-- Main Dashboard Viewport -->
         <main class="main-viewport">
             <!-- Top Header Bar -->
-            <header class="admin-topbar"
-                style="background: rgba(255,255,255,0.03); border-radius: 20px; margin-bottom: 40px; border: 1px solid rgba(253, 185, 21, 0.1);">
+            <header class="admin-topbar">
+                <div class="admin-menu-toggle" id="adminMenuToggle">☰</div>
                 <div class="search-box">
-                    <input type="text" placeholder="Scan membership records..." style="background: rgba(0,0,0,0.3);">
+                    <input type="text" id="adminSearch" placeholder="Scan membership records...">
                 </div>
                 <div class="profile-menu">
-                    <div style="text-align: right; margin-right: 15px;">
+                    <div style="text-align: right; margin-right: 15px;" class="hide-mobile">
                         <div style="font-weight: 700; color: #fff;">COMMANDER</div>
                         <div style="font-size: 0.7rem; color: var(--primary); letter-spacing: 1px;">CLEARANCE LVL 5
                         </div>
                     </div>
-                    <div class="admin-avatar"
-                        style="background: var(--primary); color: #000; font-weight: 800; box-shadow: 0 0 15px var(--primary);">
-                        HQ</div>
+                    <div class="admin-avatar">HQ</div>
                 </div>
             </header>
 
-            <h1 class="admin-page-title" style="font-size: 3.5rem; margin-bottom: 50px;">Operations <span
-                    style="color:var(--primary)">Control</span></h1>
+            <div class="admin-content-pad">
+                <h1 class="admin-page-title">Operations <span style="color:var(--primary)">Control</span></h1>
 
-            <!-- Stats Deck -->
-            <div class="stats-deck">
-                <div class="saas-card" style="border-left: 4px solid var(--primary);">
-                    <div class="card-label">Active Operatives</div>
-                    <div class="card-value" id="stats-total">0</div>
-                    <div class="card-trend trend-up">↑ 14% Network Growth</div>
+                <!-- Stats Deck -->
+                <div class="stats-deck">
+                    <div class="saas-card" style="border-left: 4px solid var(--primary);">
+                        <div class="card-label">Active Operatives</div>
+                        <div class="card-value" id="stats-total">0</div>
+                        <div class="card-trend">↑ 14% Network Growth</div>
+                    </div>
+                    <div class="saas-card" style="border-left: 4px solid var(--primary);">
+                        <div class="card-label">Avg Physique Score</div>
+                        <div class="card-value" id="stats-avg-bmi">--</div>
+                        <div class="card-trend">System Optimization Active</div>
+                    </div>
+                    <div class="saas-card" style="border-left: 4px solid var(--secondary);">
+                        <div class="card-label">Today's Inflow</div>
+                        <div class="card-value" id="stats-new">0</div>
+                        <div class="card-trend">New Assets Secured</div>
+                    </div>
+                    <div class="saas-card" style="border-left: 4px solid var(--primary);">
+                        <div class="card-label">Revenue Stream</div>
+                        <div class="card-value">$12.4K</div>
+                        <div class="card-trend">Target Achieved</div>
+                    </div>
                 </div>
-                <div class="saas-card" style="border-left: 4px solid #4cd964;">
-                    <div class="card-label">Avg Physique Score</div>
-                    <div class="card-value" id="stats-avg-bmi">--</div>
-                    <div class="card-trend">System Optimization Active</div>
-                </div>
-                <div class="saas-card" style="border-left: 4px solid #a855f7;">
-                    <div class="card-label">Today's Inflow</div>
-                    <div class="card-value" id="stats-new">0</div>
-                    <div class="card-trend trend-up">New Assets Secured</div>
-                </div>
-                <div class="saas-card" style="border-left: 4px solid #3b82f6;">
-                    <div class="card-label">Revenue Stream</div>
-                    <div class="card-value">$12.4K</div>
-                    <div class="card-trend trend-up">Target Achieved</div>
-                </div>
-            </div>
 
-            <!-- Visual Analytics Grid -->
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 30px; margin-bottom: 50px;">
-                <div class="saas-card" style="padding: 30px;">
-                    <h3 style="color: #fff; margin-bottom: 25px; font-family: var(--font-azonix);">Network Growth Matrix
-                    </h3>
-                    <canvas id="revenueChart" height="250"></canvas>
-                </div>
-                <div class="saas-card" style="padding: 30px;">
-                    <h3 style="color: #fff; margin-bottom: 25px; font-family: var(--font-azonix);">Goal Distribution
-                    </h3>
-                    <canvas id="goalsChart" height="250"></canvas>
-                </div>
-            </div>
-
-            <!-- Member Intelligence Table -->
-            <div class="saas-card" style="padding: 0; overflow: hidden;">
+                <!-- Visual Analytics Grid -->
                 <div
-                    style="padding: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
-                    <h3 style="color: #fff; font-family: var(--font-azonix); margin: 0;">Personnel Intelligence Feed
-                    </h3>
-                    <span
-                        style="font-size: 1rem; color: var(--primary); font-weight: bold; background: rgba(253, 185, 21, 0.1); padding: 5px 15px; border-radius: 50px;">LIVE
-                        FEED</span>
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px;">
+                    <div class="saas-card">
+                        <h3 style="color: #fff; margin-bottom: 25px; font-family: var(--font-azonix);">Network Growth
+                        </h3>
+                        <canvas id="revenueChart" height="250"></canvas>
+                    </div>
+                    <div class="saas-card">
+                        <h3 style="color: #fff; margin-bottom: 25px; font-family: var(--font-azonix);">Goal Distribution
+                        </h3>
+                        <canvas id="goalsChart" height="250"></canvas>
+                    </div>
                 </div>
-                <div class="saas-table-container" style="border: none; border-radius: 0;">
-                    <table class="saas-table">
-                        <thead>
-                            <tr>
-                                <th>Operative</th>
-                                <th>Bio-Metrics</th>
-                                <th>Primary Objective</th>
-                                <th>Onboarded</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="members-table-body">
-                            <!-- Populated by system logic -->
-                        </tbody>
-                    </table>
+
+                <!-- Member Intelligence Table -->
+                <div class="saas-card" style="padding: 0; overflow: hidden;">
+                    <div
+                        style="padding: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                        <h3 style="color: #fff; font-family: var(--font-azonix); margin: 0;">Personnel Intelligence Feed
+                        </h3>
+                        <span
+                            style="font-size: 0.8rem; color: var(--primary); font-weight: bold; background: rgba(253, 185, 21, 0.1); padding: 5px 15px; border-radius: 50px;">LIVE
+                            FEED</span>
+                    </div>
+                    <div class="saas-table-container">
+                        <table class="saas-table">
+                            <thead>
+                                <tr>
+                                    <th>Operative</th>
+                                    <th>Bio-Metrics</th>
+                                    <th>Primary Objective</th>
+                                    <th>Onboarded</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="members-table-body">
+                                <!-- Populated by system logic -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </main>

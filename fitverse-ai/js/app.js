@@ -237,6 +237,7 @@ function initPayment() {
 // --- Admin Dashboard Logic ---
 function initAdmin() {
     loadMembersTable();
+    setupAdminInteractions();
 
     const clearBtn = document.getElementById('clear-data-btn');
     if (clearBtn) {
@@ -254,7 +255,10 @@ function initAdmin() {
         exportBtn.addEventListener('click', exportData);
     }
 
-    // --- Chart.js Initialization ---
+    // --- Chart.js Initialization (Themed) ---
+    const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim() || '#FDB915';
+    const secondaryColor = getComputedStyle(document.documentElement).getPropertyValue('--secondary').trim() || '#ff073a';
+
     // Revenue Chart (Line)
     const ctxRevenue = document.getElementById('revenueChart');
     if (ctxRevenue) {
@@ -265,7 +269,7 @@ function initAdmin() {
                 datasets: [{
                     label: 'Sales ($)',
                     data: [8500, 9200, 10500, 11200, 11800, 12450],
-                    borderColor: '#FDB915', // Primary Gold
+                    borderColor: primaryColor,
                     backgroundColor: 'rgba(253, 185, 21, 0.1)',
                     tension: 0.4,
                     fill: true
@@ -300,10 +304,10 @@ function initAdmin() {
                 datasets: [{
                     data: [45, 30, 15, 10],
                     backgroundColor: [
-                        '#2ecc71', // Green
-                        '#9b59b6', // Purple
+                        '#4cd964', // Green
+                        secondaryColor, // Neon Red
                         '#3498db', // Blue
-                        '#FDB915'  // Gold
+                        primaryColor  // Gold
                     ],
                     borderWidth: 0
                 }]
@@ -322,6 +326,30 @@ function initAdmin() {
     }
 }
 
+function setupAdminInteractions() {
+    // Mobile Sidebar Toggle
+    const toggle = document.getElementById('adminMenuToggle');
+    const sidebar = document.getElementById('adminSidebar');
+    if (toggle && sidebar) {
+        toggle.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+        });
+    }
+
+    // Admin Search Filtering
+    const searchInput = document.getElementById('adminSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('#members-table-body tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(term) ? '' : 'none';
+            });
+        });
+    }
+}
+
 function loadMembersTable() {
     const tbody = document.getElementById('members-table-body');
     if (!tbody) return;
@@ -333,6 +361,20 @@ function loadMembersTable() {
     const newEl = document.getElementById('stats-new');
 
     if (totalEl) totalEl.textContent = members.length;
+
+    // Calculate Average BMI
+    const avgBmiEl = document.getElementById('stats-avg-bmi');
+    if (avgBmiEl) {
+        if (members.length > 0) {
+            const sumBmi = members.reduce((acc, m) => {
+                const hM = m.height / 100;
+                return acc + (m.weight / (hM * hM));
+            }, 0);
+            avgBmiEl.textContent = (sumBmi / members.length).toFixed(1);
+        } else {
+            avgBmiEl.textContent = '--';
+        }
+    }
 
     // Simulate "New This Week" as 30% of total for demo, or actual date check if strict
     if (newEl) newEl.textContent = Math.ceil(members.length * 0.4);
