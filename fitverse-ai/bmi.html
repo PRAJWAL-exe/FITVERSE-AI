@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITVERSE AI | Professional BMI Analysis</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Page-specific inline overrides for unique layout */
+        .bmi-page-container {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top right, rgba(57, 255, 20, 0.1), transparent 40%),
+                radial-gradient(circle at bottom left, rgba(255, 7, 58, 0.1), transparent 40%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar" id="main-navbar"></header>
+
+    <div class="bmi-page-container">
+        <div class="container">
+            <div class="split-layout">
+                <!-- Left Side: Content & Quote -->
+                <div class="text-section animate-fade">
+                    <h1 class="metal-title">Body Mass <br><span style="color:var(--primary)">Index</span></h1>
+                    <div class="quote-box">
+                        <p class="quote-text">"The body is the servant of the mind. It obeys the operations of the mind,
+                            be they deliberately chosen or automatically expressed."</p>
+                        <span class="quote-author">– James Allen</span>
+                    </div>
+                    <p class="description">
+                        Calculate your BMI to understand your health metrics better.
+                        Our AI-enhanced algorithm provides instant categorization to help you set realistic fitness
+                        goals.
+                    </p>
+                </div>
+
+                <!-- Right Side: Calculator Form -->
+                <div class="form-wrapper animate-fade delay-1">
+                    <div class="glass-panel">
+                        <h3 class="form-title">Enter Your Details</h3>
+
+                        <div class="form-group">
+                            <label for="height">Height (cm)</label>
+                            <input type="number" id="height" class="form-control" placeholder="e.g. 175" min="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" class="form-control" placeholder="e.g. 70" min="1">
+                        </div>
+
+                        <button id="calc-bmi-btn" class="btn" style="width: 100%; margin-top: 10px;">Calculate
+                            Now</button>
+
+                        <div id="bmi-result" class="result-box"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="main-footer"></footer>
+
+    <script src="js/app.js"></script>
+</body>
+
+</html>

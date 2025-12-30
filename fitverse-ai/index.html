@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FITVERSE AI | Smart Gym</title>
+    </title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Optimization: Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <!-- Chart.js for Admin Dashboard -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Section scrolling offset for sticky navbar */
+        section {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Shared Navigation -->
+    <header class="navbar" id="main-navbar"></header>
+
+    <!-- SECTION: HERO (HOME) -->
+    <section id="home" class="hero">
+        <div class="hero-content container">
+            <h1 class="animate-fade">Welcome to <span style="color:var(--primary)">FITVERSE</span></h1>
+            <p class="animate-fade delay-1">Transform Your Body with AI-Driven Fitness & Expert Trainers.</p>
+            <div class="animate-fade delay-2">
+                <a href="#join" class="btn">Join Now</a>
+                <a href="#bmi" class="btn btn-secondary" style="margin-left: 15px;">Check BMI</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: ABOUT -->
+    <section id="about" class="container" style="padding: 80px 20px;">
+        <h2 class="animate-fade">Why Choose Us?</h2>
+        <div class="grid">
+            <div class="card animate-fade delay-1">
+                <div class="card-content">
+                    <h3>Smart Training</h3>
+                    <p>AI-enhanced workout plans tailored to your specific body type and goals.</p>
+                </div>
+            </div>
+            <div class="card animate-fade delay-2">
+                <div class="card-content">
+                    <h3>Expert Coaches</h3>
+                    <p>Train with industry-leading professionals who guide you every step of the way.</p>
+                </div>
+            </div>
+            <div class="card animate-fade delay-3">
+                <div class="card-content">
+                    <h3>Premium Gear</h3>
+                    <p>Access state-of-the-art equipment in a futuristic, high-energy environment.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Expanded About Content -->
+        <div class="animate-fade delay-2"
+            style="margin-top: 60px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+            <div style="flex: 1; min-width: 300px;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 20px;">Our Mission</h2>
+                <p style="color: var(--text-muted); margin-bottom: 20px;">
+                    At FITVERSE AI, we believe in the convergence of human potential and artificial intelligence.
+                    Our mission is to democratize elite-level fitness coaching by leveraging real-time data analytics,
+                    computer vision, and bio-feedback.
+                </p>
+                <p style="color: var(--text-muted);">
+                    We aren't just a gym; we are a laboratory for your personal evolution. Whether you are a beginner
+                    or a pro athlete, our adaptive algorithms ensure you never plateau.
+                </p>
+            </div>
+            <div
+                style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.03); padding: 30px; border-radius: 10px; border-left: 2px solid var(--primary);">
+                <h3 style="color: #fff; margin-bottom: 15px;">Powered By</h3>
+                <ul style="list-style: none; color: var(--text-muted);">
+                    <li style="margin-bottom: 10px;">⚡ <strong>TensorFlow JS</strong> for Real-time Form Correction</li>
+                    <li style="margin-bottom: 10px;">📊 <strong>Predictive Analytics</strong> for Recovery</li>
+                    <li style="margin-bottom: 10px;">🧬 <strong>Genomic Data Integration</strong> (Coming Soon)</li>
+                    <li>🌐 <strong>Global Leaderboard</strong> Connectivity</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: TRAINERS -->
+    <section id="trainers" class="container" style="padding-top: 50px; padding-bottom: 50px;">
+        <h1 class="animate-fade">Meet Our <span style="color:var(--primary)">Elite Team</span></h1>
+        <p class="animate-fade delay-1" style="color:var(--text-muted)">The best in the industry, ready to push your
+            limits.</p>
+
+        <div class="trainers-grid">
+            <!-- Trainer 1 -->
+            <div class="card animate-fade delay-1">
+                <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="Alex Sterling" class="card-img-top" loading="lazy">
+                <div class="card-content">
+                    <h3>Alex "Iron" Sterling</h3>
+                    <p><strong>Specialization:</strong> Strength & Conditioning</p>
+                    <p><strong>Experience:</strong> 8 Years</p>
+                </div>
+            </div>
+
+            <!-- Trainer 2 -->
+            <div class="card animate-fade delay-2">
+                <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="Sarah Croft" class="card-img-top" loading="lazy">
+                <div class="card-content">
+                    <h3>Sarah Croft</h3>
+                    <p><strong>Specialization:</strong> HIIT & Cardio</p>
+                    <p><strong>Experience:</strong> 5 Years</p>
+                </div>
+            </div>
+
+            <!-- Trainer 3 -->
+            <div class="card animate-fade delay-3">
+                <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="Marcus Zane" class="card-img-top" loading="lazy">
+                <div class="card-content">
+                    <h3>Marcus Zane</h3>
+                    <p><strong>Specialization:</strong> Bodybuilding</p>
+                    <p><strong>Experience:</strong> 12 Years</p>
+                </div>
+            </div>
+
+            <!-- Trainer 4 -->
+            <div class="card animate-fade delay-3">
+                <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="Emily Chen" class="card-img-top" loading="lazy">
+                <div class="card-content">
+                    <h3>Emily Chen</h3>
+                    <p><strong>Specialization:</strong> Yoga & Mobility</p>
+                    <p><strong>Experience:</strong> 6 Years</p>
+                </div>
+            </div>
+
+            <!-- Trainer 5 -->
+            <div class="card animate-fade delay-1">
+                <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="David Vance" class="card-img-top" loading="lazy">
+                <div class="card-content">
+                    <h3>David "Rogue" Vance</h3>
+                    <p><strong>Specialization:</strong> CrossFit & Endurance</p>
+                    <p><strong>Experience:</strong> 7 Years</p>
+                </div>
+            </div>
+
+            <!-- Trainer 6 -->
+            <div class="card animate-fade delay-2">
+                <img src="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="Elena Rossi" class="card-img-top" loading="lazy">
+                <div class="card-content">
+                    <h3>Elena Rossi</h3>
+                    <p><strong>Specialization:</strong> Pilates & Core</p>
+                    <p><strong>Experience:</strong> 4 Years</p>
+                </div>
+            </div>
+
+            <!-- Trainer 7 -->
+            <div class="card animate-fade delay-3">
+                <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="Jax Wheeler" class="card-img-top" loading="lazy">
+                <div class="card-content">
+                    <h3>Jax "Titan" Wheeler</h3>
+                    <p><strong>Specialization:</strong> Powerlifting</p>
+                    <p><strong>Experience:</strong> 10 Years</p>
+                </div>
+            </div>
+
+            <!-- Trainer 8 -->
+            <div class="card animate-fade delay-3">
+                <img src="https://images.unsplash.com/photo-1611672585731-fa10603fb9e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
+                    alt="Sophia Kovan" class="card-img-top" loading="lazy">
+                <div class="card-content">
+                    <h3>Sophia "Viper" Kovan</h3>
+                    <p><strong>Specialization:</strong> Kickboxing & MMA</p>
+                    <p><strong>Experience:</strong> 9 Years</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PRICING -->
+    <section id="pricing" class="container" style="padding-top: 50px; padding-bottom: 50px;">
+        <h1 class="animate-fade">Membership <span style="color:var(--primary)">Plans</span></h1>
+        <p class="animate-fade delay-1" style="color:var(--text-muted)">Choose the perfect plan for your AI-enhanced
+            fitness journey.</p>
+
+        <!-- FITVERSE AI MEMBERSHIP -->
+        <h2 class="animate-fade delay-2" style="margin-top: 50px;">FITVERSE AI Membership</h2>
+        <div class="pricing-grid">
+            <!-- Daily Plan -->
+            <div class="card animate-fade delay-2" style="text-align: center; padding: 20px;">
+                <div class="card-content">
+                    <h3>Daily Pass</h3>
+                    <p style="font-size: 2.5rem; color: #fff; margin: 20px 0; font-weight: bold;">$15</p>
+                    <p>Single Day Access</p>
+                    <ul
+                        style="text-align: left; margin: 20px 0; color: var(--text-muted); list-style: disc; padding-left: 20px;">
+                        <li>Full Gym Access</li>
+                        <li>Basic AI Workout Suggestion</li>
+                        <li>Locker Access</li>
+                    </ul>
+                    <a href="payment.html" class="btn">Select Plan</a>
+                </div>
+            </div>
+
+            <!-- Monthly Plan -->
+            <div class="card animate-fade delay-3"
+                style="text-align: center; padding: 20px; border-color: var(--primary);">
+                <div class="card-content">
+                    <div
+                        style="background: var(--primary); color: #000; display: inline-block; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 0.8rem; margin-bottom: 15px;">
+                        MOST POPULAR</div>
+                    <h3>Monthly Pro</h3>
+                    <p style="font-size: 2.5rem; color: #fff; margin: 20px 0; font-weight: bold;">$59</p>
+                    <p>Billed Monthly</p>
+                    <ul
+                        style="text-align: left; margin: 20px 0; color: var(--text-muted); list-style: disc; padding-left: 20px;">
+                        <li>Unlimited 24/7 Access</li>
+                        <li>Advanced AI Training Plan</li>
+                        <li>Smart Equipment Sync</li>
+                        <li>Free Smoothie per Visit</li>
+                    </ul>
+                    <a href="payment.html" class="btn">Select Plan</a>
+                </div>
+            </div>
+
+            <!-- Annual Plan -->
+            <div class="card animate-fade delay-4" style="text-align: center; padding: 20px;">
+                <div class="card-content">
+                    <h3>Annual Elite</h3>
+                    <p style="font-size: 2.5rem; color: #fff; margin: 20px 0; font-weight: bold;">$599</p>
+                    <p>Billed Annually (Save 15%)</p>
+                    <ul
+                        style="text-align: left; margin: 20px 0; color: var(--text-muted); list-style: disc; padding-left: 20px;">
+                        <li>All Monthly Pro Benefits</li>
+                        <li>VIP Locker & Laundry</li>
+                        <li>1-on-1 Trainer Session (1x/mo)</li>
+                        <li>Exclusive Merch Pack</li>
+                    </ul>
+                    <a href="payment.html" class="btn">Select Plan</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- COLLABORATIVE GYMS -->
+        <h2 class="animate-fade" style="margin-top: 80px;">Partner Gyms (Powered by Fitverse AI)</h2>
+        <p class="animate-fade delay-1" style="color:var(--text-muted)">Access our AI technology at these partner
+            locations.</p>
+
+        <div class="table-responsive animate-fade delay-1">
+            <table class="card" style="width: 100%; border-radius: 10px; overflow: hidden; background: var(--card-bg);">
+                <thead>
+                    <tr style="background: rgba(255,255,255,0.05);">
+                        <th>Gym Name</th>
+                        <th>Location</th>
+                        <th>Daily Pass</th>
+                        <th>Monthly Fee</th>
+                        <th>Annual Fee</th>
+                    </tr>
+                </thead>
+                <tbody style="color: #fff;">
+                    <tr>
+                        <td style="font-weight: bold; color: var(--primary);">Iron Paradise</td>
+                        <td>Downtown Metro</td>
+                        <td>$20</td>
+                        <td>$75</td>
+                        <td>$800</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: var(--primary);">Metro Flex</td>
+                        <td>Westside District</td>
+                        <td>$12</td>
+                        <td>$45</td>
+                        <td>$450</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: var(--primary);">Titan Fitness</td>
+                        <td>North Hills</td>
+                        <td>$25</td>
+                        <td>$90</td>
+                        <td>$950</td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: bold; color: var(--primary);">Core Dynamics</td>
+                        <td>East Bay</td>
+                        <td>$18</td>
+                        <td>$60</td>
+                        <td>$650</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- SECTION: BMI CALCULATOR -->
+    <section id="bmi" class="bmi-page-container">
+        <div class="container">
+            <div class="split-layout">
+                <!-- Left Side: Content & Quote -->
+                <div class="text-section animate-fade">
+                    <h1 class="metal-title">Body Mass <br><span style="color:var(--primary)">Index</span></h1>
+                    <div class="quote-box">
+                        <p class="quote-text">"The body is the servant of the mind. It obeys the operations of the mind,
+                            be they deliberately chosen or automatically expressed."</p>
+                        <span class="quote-author">– James Allen</span>
+                    </div>
+                    <p class="description">
+                        Calculate your BMI to understand your health metrics better.
+                        Our AI-enhanced algorithm provides instant categorization to help you set realistic fitness
+                        goals.
+                    </p>
+                </div>
+
+                <!-- Right Side: Calculator Form -->
+                <div class="form-wrapper animate-fade delay-1">
+                    <div class="glass-panel">
+                        <h3 class="form-title">Enter Your Details</h3>
+
+                        <div class="form-group">
+                            <label for="height">Height (cm)</label>
+                            <input type="number" id="height" class="form-control" placeholder="e.g. 175" min="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="weight">Weight (kg)</label>
+                            <input type="number" id="weight" class="form-control" placeholder="e.g. 70" min="1">
+                        </div>
+
+                        <button id="calc-bmi-btn" class="btn" style="width: 100%; margin-top: 10px;">Calculate
+                            Now</button>
+
+                        <div id="bmi-result" class="result-box"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: JOIN (REGISTER) -->
+    <!-- SECTION: JOIN (REGISTER) -->
+    <section id="join" class="bmi-page-container">
+        <div class="container">
+            <div class="split-layout">
+                <!-- Left Side: Content & Quote -->
+                <div class="text-section animate-fade">
+                    <h1 class="metal-title">Join The <br><span style="color:var(--primary)">Revolution</span></h1>
+                    <div class="quote-box">
+                        <p class="quote-text">"The only bad workout is the one that didn't happen. Commit to your
+                            future self today."</p>
+                        <span class="quote-author">– Fitverse Philosophy</span>
+                    </div>
+                    <p class="description">
+                        Start your transformation journey with AI-driven insights.
+                        Sign up now to access personalized plans, real-time analytics, and a community of high
+                        achievers.
+                    </p>
+                </div>
+
+                <!-- Right Side: Registration Form -->
+                <div class="form-wrapper animate-fade delay-1">
+                    <div class="glass-panel">
+                        <h3 class="form-title">Member Registration</h3>
+                        <form id="join-form">
+
+                            <div class="form-group">
+                                <label for="join-name" style="color: #ccc; margin-bottom: 5px; display: block;">Full
+                                    Name</label>
+                                <input type="text" id="join-name" class="form-control" placeholder="Enter full name"
+                                    required style="background: rgba(0,0,0,0.5); border: 1px solid #444; color: #fff;">
+                            </div>
+
+                            <div style="display: flex; gap: 15px;">
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="join-height"
+                                        style="color: #ccc; margin-bottom: 5px; display: block;">Height (cm)</label>
+                                    <input type="number" id="join-height" class="form-control" placeholder="175"
+                                        required
+                                        style="background: rgba(0,0,0,0.5); border: 1px solid #444; color: #fff;">
+                                </div>
+                                <div class="form-group" style="flex: 1;">
+                                    <label for="join-weight"
+                                        style="color: #ccc; margin-bottom: 5px; display: block;">Weight (kg)</label>
+                                    <input type="number" id="join-weight" class="form-control" placeholder="70" required
+                                        style="background: rgba(0,0,0,0.5); border: 1px solid #444; color: #fff;">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="join-goal" style="color: #ccc; margin-bottom: 5px; display: block;">Primary
+                                    Goal</label>
+                                <select id="join-goal" class="form-control"
+                                    style="background: rgba(0,0,0,0.5); border: 1px solid #444; color: #fff;" required>
+                                    <option value="" disabled selected>Select Goal</option>
+                                    <option value="Weight Loss">Weight Loss</option>
+                                    <option value="Muscle Gain">Muscle Gain</option>
+                                    <option value="Endurance">Endurance</option>
+                                    <option value="Flexibility">Flexibility</option>
+                                </select>
+                            </div>
+
+                            <button type="submit" class="btn" style="width: 100%; margin-top: 15px;">Join Now
+                            </button>
+                            <div id="join-msg" style="margin-top: 15px; text-align: center; color: var(--primary);">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <a href="admin.html" class="nav-link">Admin</a>
+    <div class="nav-indicator"></div>

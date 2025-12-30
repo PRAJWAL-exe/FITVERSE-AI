@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment - Fitverse AI</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Azonix&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body
+    style="background: radial-gradient(circle at center, #1e1b4b, #000); display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+
+    <section id="payment" class="bmi-page-container" style="padding: 0; width: 100%;">
+        <div class="container">
+            <div class="glass-panel"
+                style="max-width: 600px; margin: 0 auto; padding: 40px; text-align: left; border: 1px solid rgba(253, 185, 21, 0.3); box-shadow: 0 0 50px rgba(0,0,0,0.8);">
+
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <a href="index.html" class="logo"
+                        style="text-decoration: none; font-size: 2rem;">FITVERSE<span>.AI</span></a>
+                </div>
+
+                <h2 class="metal-title" style="text-align: center; font-size: 2.5rem; margin-bottom: 30px;">Secure <span
+                        style="color:var(--primary)">Payment</span></h2>
+
+                <form id="payment-form">
+                    <!-- Payment Mode Selection -->
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label style="color: #ccc; margin-bottom: 10px; display: block;">Select Payment Mode</label>
+                        <div style="display: flex; gap: 15px;">
+                            <label class="payment-mode-radio">
+                                <input type="radio" name="pay-mode" value="card" checked>
+                                <span class="mode-box">Credit Card</span>
+                            </label>
+                            <label class="payment-mode-radio">
+                                <input type="radio" name="pay-mode" value="paypal">
+                                <span class="mode-box">PayPal</span>
+                            </label>
+                            <label class="payment-mode-radio">
+                                <input type="radio" name="pay-mode" value="crypto">
+                                <span class="mode-box">Crypto</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Card Details -->
+                    <div class="form-group">
+                        <label for="card-name" style="color: #ccc; margin-bottom: 5px; display: block;">Cardholder
+                            Name</label>
+                        <input type="text" id="card-name" class="form-control" placeholder="John Doe" required
+                            style="background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(253, 185, 21, 0.3);">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="card-number" style="color: #ccc; margin-bottom: 5px; display: block;">Card
+                            Number</label>
+                        <input type="text" id="card-number" class="form-control" placeholder="0000 0000 0000 0000"
+                            maxlength="19" required
+                            style="background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(253, 185, 21, 0.3);">
+                    </div>
+
+                    <div style="display: flex; gap: 15px;">
+                        <div class="form-group" style="flex: 1;">
+                            <label for="card-expiry"
+                                style="color: #ccc; margin-bottom: 5px; display: block;">Expiry</label>
+                            <input type="text" id="card-expiry" class="form-control" placeholder="MM/YY" maxlength="5"
+                                required
+                                style="background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(253, 185, 21, 0.3);">
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="card-cvv" style="color: #ccc; margin-bottom: 5px; display: block;">CVV</label>
+                            <input type="password" id="card-cvv" class="form-control" placeholder="123" maxlength="3"
+                                required
+                                style="background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(253, 185, 21, 0.3);">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn"
+                        style="width: 100%; margin-top: 20px; box-shadow: 0 0 20px rgba(253, 185, 21, 0.3);">Pay
+                        Now</button>
+                    <div id="payment-msg"
+                        style="margin-top: 15px; text-align: center; color: var(--primary); font-weight: bold;"></div>
+                </form>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="index.html" style="color: #888; text-decoration: none; font-size: 0.9rem;">Cancel &
+                        Return</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Payment Logic Script -->
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const msgBox = document.getElementById('payment-msg');
+            const btn = e.target.querySelector('button');
+            const num = document.getElementById('card-number').value;
+
+            if (num.length < 16) {
+                msgBox.textContent = "Invalid Card Number";
+                msgBox.style.color = "red";
+                return;
+            }
+
+            // Simulate Processing
+            btn.textContent = "Processing...";
+            btn.disabled = true;
+            msgBox.textContent = "Contacting Secure Gateway...";
+            msgBox.style.color = "#FDB915"; // Gold
+
+            setTimeout(() => {
+                msgBox.textContent = "Payment Verified! Redirecting to Dashboard...";
+                msgBox.style.color = "#4cd964"; // Green
+
+                setTimeout(() => {
+                    // Redirect to Admin on Main Page
+                    window.location.href = "index.html#admin";
+                }, 1500);
+            }, 2000);
+        });
+    </script>
+</body>
+
+</html>
