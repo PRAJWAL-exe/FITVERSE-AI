@@ -68,19 +68,30 @@ Most gym websites are outdated, static, and conversion-weak. FITVERSE AI replace
 📐 **System Flow**  
 ![Architecture](screenshots/architecture.png)
 
-```text
-User → Smart UI → JS Intelligence Engine → BMI Classifier 
-     → Browser LocalStorage → Admin Analytics Console
-⚙️ Installation Guide
-1️⃣ Clone Repository
+## 🛠️ Technology Stack
+
+| Layer | Technology |
+|------|------------|
+| **Frontend** | HTML5, CSS3 (Glassmorphism), JavaScript ES6 |
+| **Data Engine** | Custom AI Logic Modules |
+| **Visualization** | Chart.js |
+| **Storage** | Browser LocalStorage |
+| **Hosting** | GitHub Pages / Netlify / Vercel |
+
+---
+
+## ⚙️ Installation Guide
+
+### 1️⃣ Clone Repository
+```bash
 git clone https://github.com/your-username/FITVERSE-AI.git
-
-2️⃣ Navigate into Folder
+### 2️⃣ Navigate into Folder
+```bash
 cd FITVERSE-AI
-
 3️⃣ Run the Application
 
-Open index.html directly or use VS Code Live Server.
+Open index.html directly or use VS Code Live Server for best experience.
+
 
 📂 Project Structure
 FITVERSE-AI/
@@ -114,16 +125,6 @@ FITVERSE-AI/
 
 🥗 AI Diet Planning Module
 
-🤝 Contributing
-
-We welcome community contributions!
-
-git checkout -b feature/NewFeature
-git commit -m "Added New Feature"
-git push origin feature/NewFeature
-
-
-Open a Pull Request & join the FITVERSE revolution 🚀
 
 📜 License
 
