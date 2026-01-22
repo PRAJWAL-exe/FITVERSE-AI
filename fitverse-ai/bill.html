@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Receipt - Fitverse AI</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Azonix&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body
+    style="background: radial-gradient(circle at center, #1e1b4b, #000); display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: 'Poppins', sans-serif;">
+
+    <section id="bill" class="bill-page-container" style="padding: 0; width: 100%;">
+        <div class="container">
+            <div class="glass-panel"
+                style="max-width: 600px; margin: 0 auto; padding: 40px; text-align: left; border: 1px solid rgba(76, 217, 100, 0.3); box-shadow: 0 0 50px rgba(0,0,0,0.8); position: relative; overflow: hidden;">
+
+                <!-- Success Indicator -->
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div
+                        style="width: 80px; height: 80px; background: rgba(76, 217, 100, 0.2); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="#4cd964" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <h2 class="metal-title" style="font-size: 2rem; color: #4cd964; margin: 0;">Payment Successful</h2>
+                    <p style="color: #ccc; margin-top: 5px;">Your transaction has been processed.</p>
+                </div>
+
+                <div
+                    style="border-top: 1px dashed rgba(255,255,255,0.2); border-bottom: 1px dashed rgba(255,255,255,0.2); padding: 20px 0; margin: 20px 0;">
+
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="color: #888;">Transaction ID</span>
+                        <span style="color: #fff; font-family: 'Azonix', sans-serif;" id="receipt-id">#FIT-849201</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="color: #888;">Date</span>
+                        <span style="color: #fff;" id="receipt-date">Oct 24, 2025, 10:30 AM</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="color: #888;">Payment Method</span>
+                        <span style="color: #fff;" id="receipt-method">Credit Card</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <span style="color: #888;">Customer</span>
+                        <span style="color: #fff;" id="receipt-name">Guest User</span>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <span style="font-size: 1.2rem; color: #fff; font-weight: 600;">Total Amount</span>
+                    <span style="font-size: 2rem; color: var(--primary); font-family: 'Azonix', sans-serif;"
+                        id="receipt-amount">$0.00</span>
+                </div>
+
+                <div style="display: flex; gap: 15px;">
+                    <button onclick="window.print()" class="btn"
+                        style="flex: 1; background: transparent; border: 1px solid var(--primary); color: var(--primary);">
+                        Print Receipt
+                    </button>
+                    <a href="index.html" class="btn" style="flex: 1; text-align: center; text-decoration: none;">
+                        Back to Home
+                    </a>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px; font-size: 0.8rem; color: #666;">
+                    Thank you for choosing FITVERSE AI. <br> An automated receipt has been sent to your email.
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Generate Random Transaction ID
+            const generateId = () => 'FIT-' + Math.floor(100000 + Math.random() * 900000);
+
+            // Get URL Params
+            const params = new URLSearchParams(window.location.search);
+            const amount = params.get('amount') || '$59.00';
+            const method = params.get('method') || 'Credit Card';
+            const name = params.get('name') || 'Valued Member';
+            const date = new Date().toLocaleString();
+
+            // Set Values
+            document.getElementById('receipt-id').textContent = generateId();
+            document.getElementById('receipt-date').textContent = date;
+            document.getElementById('receipt-amount').textContent = amount;
+            document.getElementById('receipt-method').textContent = method.toUpperCase();
+            document.getElementById('receipt-name').textContent = name;
+        });
+    </script>
+</body>
+
+</html>

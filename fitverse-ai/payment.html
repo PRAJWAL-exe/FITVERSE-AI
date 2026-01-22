@@ -48,6 +48,18 @@
                         </div>
                     </div>
 
+                    <!-- Membership Plan -->
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="membership-plan" style="color: #ccc; margin-bottom: 5px; display: block;">Membership
+                            Plan</label>
+                        <select id="membership-plan" class="form-control"
+                            style="background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(253, 185, 21, 0.3);">
+                            <option value="Daily Pass|$15.00">Daily Pass - $15.00</option>
+                            <option value="Monthly Pro|$59.00" selected>Monthly Pro - $59.00</option>
+                            <option value="Annual Elite|$599.00">Annual Elite - $599.00</option>
+                        </select>
+                    </div>
+
                     <!-- Card Details -->
                     <div class="form-group">
                         <label for="card-name" style="color: #ccc; margin-bottom: 5px; display: block;">Cardholder
@@ -103,6 +115,11 @@
             const msgBox = document.getElementById('payment-msg');
             const btn = e.target.querySelector('button');
             const num = document.getElementById('card-number').value;
+            const name = document.getElementById('card-name').value;
+            const method = document.querySelector('input[name="pay-mode"]:checked').value;
+            const planData = document.getElementById('membership-plan').value.split('|');
+            const planName = planData[0];
+            const planPrice = planData[1];
 
             if (num.length < 16) {
                 msgBox.textContent = "Invalid Card Number";
@@ -116,13 +133,33 @@
             msgBox.textContent = "Contacting Secure Gateway...";
             msgBox.style.color = "#FDB915"; // Gold
 
+            // Save Transaction to LocalStorage
+            const transactions = JSON.parse(localStorage.getItem('fitverse_payments') || '[]');
+            const newTx = {
+                id: 'FIT-' + Math.floor(10000 + Math.random() * 90000),
+                date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+                time: new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }),
+                user: name,
+                plan: planName,
+                amount: planPrice,
+                method: method,
+                status: 'Completed'
+            };
+            transactions.unshift(newTx); // Add to beginning
+            localStorage.setItem('fitverse_payments', JSON.stringify(transactions));
+
             setTimeout(() => {
-                msgBox.textContent = "Payment Verified! Redirecting to Dashboard...";
+                msgBox.textContent = "Payment Verified! Generating Receipt...";
                 msgBox.style.color = "#4cd964"; // Green
 
                 setTimeout(() => {
-                    // Redirect to Admin Page
-                    window.location.href = "admin.html";
+                    // Redirect to Bill Page with params
+                    const params = new URLSearchParams({
+                        name: name,
+                        amount: planPrice,
+                        method: method
+                    });
+                    window.location.href = `bill.html?${params.toString()}`;
                 }, 1500);
             }, 2000);
         });
